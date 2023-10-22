@@ -5,6 +5,11 @@ import { TeamDetailComponent } from './teams/components/team-detail/team-detail.
 export const routes: Routes = [
     {
         path: '',
+        redirectTo: '/countries-league',
+        pathMatch: 'full'
+    },
+    {
+        path: 'countries-league',
         component: TeamsLeagueComponent
     },
     {

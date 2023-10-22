@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { TeamService } from '../../services/team.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from '../../interfaces/team.interface';
 
 @Component({
@@ -16,19 +16,25 @@ import { Team } from '../../interfaces/team.interface';
 export class TeamDetailComponent implements OnInit {
   
   team$!: Observable<Team>;
+  idLeague: number = 0;
   private teamService = inject(TeamService);
   private activedRoute = inject(ActivatedRoute);
+  private route = inject(Router);
 
   constructor(){}
 
   ngOnInit(): void {
-    const idLeague = Number(this.activedRoute.snapshot.paramMap.get('league')) ;
+     this.idLeague = Number(this.activedRoute.snapshot.paramMap.get('league')) ;
     const idTeam = Number(this.activedRoute.snapshot.paramMap.get('team'));
-    this.searchData( idTeam);
+    this.searchData( idTeam );
   }
 
   searchData( idTeam: number ){
     this.team$ = this.teamService.getTeam( idTeam );
+  }
+
+  goBack(){
+    this.route.navigate([ '/countries-league'], { state: { id: this.idLeague }} );
   }
 
 }
