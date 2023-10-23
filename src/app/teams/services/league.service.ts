@@ -8,7 +8,6 @@ export class LeagueService {
 
   private readonly http = inject(HttpClient);
   private url = 'https://v3.football.api-sports.io/standings?';
-  //private readonly API_KEY = '2b3a0dde64897b0f536b5b666996624b';
   private year = new Date().getFullYear();
 
   constructor() { }

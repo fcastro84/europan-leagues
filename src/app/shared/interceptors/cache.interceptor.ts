@@ -6,8 +6,9 @@ import {
   HttpInterceptor,
   HttpEventType
 } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, finalize, of, tap } from 'rxjs';
 import { CacheService } from '../services/cache.service';
+import { SpinnerService } from '../services/spinner.service';
 
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
@@ -15,6 +16,7 @@ export class CacheInterceptor implements HttpInterceptor {
   private readonly API_KEY = '2b3a0dde64897b0f536b5b666996624b';
 
   private cacheService = inject(CacheService);
+  private spinnerService = inject(SpinnerService);
 
   constructor() {}
 
@@ -28,19 +30,22 @@ export class CacheInterceptor implements HttpInterceptor {
       return of(cachedResponse);
     }
 
-    request = request.clone({
+    const cloneRequest = request.clone({
       setHeaders: {
         "x-rapidapi-host": "v3.football.api-sports.io",
-      "x-rapidapi-key": this.API_KEY
+        "x-rapidapi-key": this.API_KEY
       }
-    })
+    }); 
 
-    return next.handle(request).pipe(
-      tap(( event: HttpEvent<any>) => {
-        if( event.type === HttpEventType.Response){
-          this.cacheService.put( request.url, event);
+    this.spinnerService.show();
+
+    return next.handle( cloneRequest ).pipe(
+      tap(( event ) => {
+        if( event.type === HttpEventType.Response ){
+          this.cacheService.put( cloneRequest.url, event );
         }
-      })
+      }),
+      finalize(() => this.spinnerService.hide())
     );
     
   }

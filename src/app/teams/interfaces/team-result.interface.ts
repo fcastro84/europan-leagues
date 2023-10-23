@@ -1,4 +1,4 @@
-export interface Team {
+export interface TeamResult {
     get:        string;
     parameters: Parameters;
     errors:     any[];

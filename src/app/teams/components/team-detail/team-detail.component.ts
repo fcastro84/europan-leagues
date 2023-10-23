@@ -1,21 +1,21 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf, NgStyle } from '@angular/common';
 import { Observable } from 'rxjs';
 import { TeamService } from '../../services/team.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Team } from '../../interfaces/team.interface';
+import { TeamResult } from '../../interfaces/team-result.interface';
 
 @Component({
   selector: 'app-team-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgIf, NgFor, NgStyle, AsyncPipe],
   templateUrl: './team-detail.component.html',
   styleUrls: ['./team-detail.component.scss'],
   providers: [TeamService]
 })
 export class TeamDetailComponent implements OnInit {
   
-  team$!: Observable<Team>;
+  team$!: Observable<TeamResult>;
   idLeague: number = 0;
   private teamService = inject(TeamService);
   private activedRoute = inject(ActivatedRoute);

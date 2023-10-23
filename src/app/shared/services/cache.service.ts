@@ -10,12 +10,10 @@ export class CacheService <T> {
   constructor() { }
 
   put( url: string, response: T){
-    console.log(`cache miss: put ${url}`);
     this.cache.set( url, response);
   }
 
   get( url: string ){
-    console.log(`cache hit: get ${url}`);
     return this.cache.get( url );
   }
 

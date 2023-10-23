@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HttpClientModule],
+  imports: [RouterOutlet, HttpClientModule, SpinnerComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { TeamsLeagueComponent } from './teams/teams-league/teams-league.component';
+import { CountriesLeagueComponent } from './teams/countries-league/countries-league.component';
 import { TeamDetailComponent } from './teams/components/team-detail/team-detail.component';
 
 export const routes: Routes = [
@@ -10,7 +10,7 @@ export const routes: Routes = [
     },
     {
         path: 'countries-league',
-        component: TeamsLeagueComponent
+        component: CountriesLeagueComponent
     },
     {
         path: 'team/:league/:team',
