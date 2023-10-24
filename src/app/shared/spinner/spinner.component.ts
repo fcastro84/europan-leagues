@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
+
 import { SpinnerService } from '../services/spinner.service';
 
 @Component({
   selector: 'app-spinner',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgIf, AsyncPipe],
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.scss']
 })
 export class SpinnerComponent {
-  isLoading$ = this.spinnerservice.isLoading$
+  isLoading$ = this.spinnerService.isLoading$;
 
-  constructor(private readonly spinnerservice: SpinnerService){}
+  constructor(private readonly spinnerService: SpinnerService){}
 
 }

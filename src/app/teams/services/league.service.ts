@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Teams } from '../interfaces/teams.interface';
 import { Observable } from 'rxjs';
+
+import { Teams } from '../interfaces/teams.interface';
 
 @Injectable()
 export class LeagueService {

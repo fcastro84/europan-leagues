@@ -1,8 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { AsyncPipe, NgFor, NgIf, NgStyle } from '@angular/common';
 import { Observable } from 'rxjs';
-import { TeamService } from '../../services/team.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { TeamService } from '../../services/team.service';
 import { TeamResult } from '../../interfaces/team-result.interface';
 
 @Component({
@@ -36,5 +37,4 @@ export class TeamDetailComponent implements OnInit {
   goBack(){
     this.route.navigate([ '/countries-league'], { state: { id: this.idLeague }} );
   }
-
 }
