@@ -3,9 +3,9 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-center rounded-pill">
       <ul class="nav nav-pills justify-content-center">
         <li  *ngFor="let item of countries">
-          <a  [ngClass]="{ 'nav-link': true, 'active': item.code === idSelect }" aria-current="page" (click)="searchData(item.code)" id="{{ item.id }}">{{ item.name }}</a>
+          <a  [ngClass]="{ 'nav-link': true, 'active': item.code === idSelect }" aria-current="page" (click)="idSelect = item.code" id="{{ item.id }}">{{ item.name }}</a>
         </li>
       </ul>
     </nav>
   </header>
-  <app-team-list [teams$]="teams$" />
+  <app-team-list [country]="idSelect" />

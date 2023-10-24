@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Teams } from '../../interfaces/teams.interface';
+import { LeagueService } from '../../services/league.service';
 
 
 @Component({
@@ -15,6 +16,13 @@ import { Teams } from '../../interfaces/teams.interface';
 })
 export class TeamListComponent {
 
-  @Input() teams$: Observable<Teams> | null = null;
+  //@Input() teams$: Observable<Teams> | null = null;
+  teams$!: Observable<Teams>;
+  
+  @Input() set country( countryId: number){
+    this.teams$ = this.leagueService.getLeague( countryId );
+  }
+
+  private leagueService = inject(LeagueService);
 
 }
