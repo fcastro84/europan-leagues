@@ -16,7 +16,6 @@ import { LeagueService } from '../../services/league.service';
 })
 export class TeamListComponent {
 
-  //@Input() teams$: Observable<Teams> | null = null;
   teams$!: Observable<Teams>;
   
   @Input() set country( countryId: number){

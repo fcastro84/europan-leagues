@@ -17,7 +17,7 @@ export class CacheService <T> {
     return this.cache.get( url );
   }
 
-  clear(  ){
+  clear(){
     this.cache.clear();
   }
 }
